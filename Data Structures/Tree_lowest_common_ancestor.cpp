@@ -18,7 +18,10 @@ node *lca(node *root, int v1,int v2)
     while(tmp!=NULL)
     {
         if(tmp->data==v1)
-            break;
+        {
+        	v_2.push_back(tmp);
+        	break;
+		}    
         else
             if(tmp->data>v1)
             {
@@ -36,7 +39,10 @@ node *lca(node *root, int v1,int v2)
     while(tmp!=NULL)
     {
         if(tmp->data==v2)
-            break;
+        {
+        	v_1.push_back(tmp);
+			break;
+		}    
         else
             if(tmp->data>v2)
             {
