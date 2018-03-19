@@ -14,10 +14,15 @@ int main()
 	for(int i=0;i<size;i++)
 	cin>>ar[i];
 	int i=0;
-	for(i=0;i<size-1;i++)
+	
+	int min=ar[size-1];
+	for(i=size-2;i>=0;i--)
 	{
-		if(ar[i]>ar[i+1])
-		cout<<ar[i];	
+		if(ar[i]>min)
+		{
+			min=ar[i];
+			cout<<ar[i];	
+		}	
 	}
 	cout<<ar[size-1];
 	
