@@ -16,6 +16,7 @@ int main()
 	int i=0;
 	
 	int min=ar[size-1];
+	cout << min<< " ";
 	for(i=size-2;i>=0;i--)
 	{
 		if(ar[i]>min)
@@ -24,7 +25,7 @@ int main()
 			cout<<ar[i];	
 		}	
 	}
-	cout<<ar[size-1];
+	
 	
 	
 	return 0;
