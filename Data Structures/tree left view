@@ -1,0 +1,61 @@
+// C program to print left view of Binary Tree
+#include<iostream>
+#include<map>
+#include<cmath>
+#include<bits/stdc++.h>
+
+using namespace std; 
+class node
+{
+	public:
+		int data;
+		node *left;
+		node * right;
+		
+		node(int data)
+		{
+			this->data = data;
+			left = NULL;
+			right = NULL;
+		}
+
+};
+void display(node *root)
+{
+	if(root)
+	{
+		display(root->left);
+		cout<<root->data<<" ";
+		display(root->right);
+	}
+}
+void print_left(node *root,int level,map<int,int> &m){
+    if(m.find(level)==m.end()){
+        m[level]=root->data;
+        cout <<root->data<< " ";
+    }
+    print_left(root->left,level+1,m);
+    print_left(root->right,level+1,m);
+    
+}
+void leftView(node *root)
+{   if(root==NULL)
+       return ;
+    int level=0;
+    map<int,int> m;
+    print_left(root,level,m);
+   
+}
+int main()
+{
+	node *root = new node(20);
+	root->left = new node(8);
+	root->right= new node(22);
+	root->left->right=new node(3);
+	root->left->left = new node (5);
+	root->left->right->left = new node(10);
+	root->left->right->right = new node(14);
+	root->right->right = new node(25);
+	leftView(root);
+	return 0;
+}
