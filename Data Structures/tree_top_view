@@ -1,6 +1,7 @@
 // C program to print left view of Binary Tree
 #include<iostream>
 #include<map>
+#include<cmath>
 #include<bits/stdc++.h>
 
 using namespace std; 
@@ -28,38 +29,37 @@ void display(node *root)
 		display(root->right);
 	}
 }
-void topviewuntil(node* root,int level,map<int,int> &m)
+map<int,int> topviewuntil(node* root,int level,int depth,map<int,int> &m)
 {
-	if(root == NULL)
-	return ;
-	else
-	{
-		if(m.find(level) == m.end())
-		{
+		if(root==NULL)
+			return m;	
+		if((m.find(level) == m.end()) || (m.find(level)!=m.end() && depth < abs(level)+1))
 			m[level] = root->data;
-			cout<<root->data<<" ";
-		}
 		if(root->left!=NULL)
-			topviewuntil(root->left,level-1,m);
+			topviewuntil(root->left,level-1,depth+1,m);
 		if(root->right!=NULL)
-			topviewuntil(root->right,level+1,m);
-	}
+			topviewuntil(root->right,level+1,depth+1,m);
+		
+		return m;
 }
 void topview(node *root)
 {
 	map<int,int> m;
 	int level=0;
-	topviewuntil(root,level,m);
+	int depth=0;
+	m=topviewuntil(root,level,depth,m);
+	map<int,int> :: iterator itr;
+	for(itr = m.begin();itr!=m.end();itr++)
+	cout<<itr->second<<" ";
 }
 int main()
 {
 	node *root = new node(1);
 	root->left = new node(2);
 	root->right= new node(3);
-	root->left->left = new node (4);
-	root->left->right=new node(5);
-	root->right->left = new node(6);
-	root->right->right=new node(7);
+	root->left->right=new node(4);
+	root->left->right->right = new node (5);
+	root->left->right->right->right = new node(6);
 	topview(root);
 	return 0;
 }
