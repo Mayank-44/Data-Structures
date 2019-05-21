@@ -20,6 +20,7 @@ class node
 		}
 
 };
+
 void display(node *root)
 {
 	if(root)
@@ -29,8 +30,11 @@ void display(node *root)
 		display(root->right);
 	}
 }
+
 void print_left(node *root,int level,map<int,int> &m){
-    if(m.find(level)==m.end()){
+    if(root==NULL)
+    	return;
+	if(m.find(level)==m.end()){
         m[level]=root->data;
         cout <<root->data<< " ";
     }
@@ -46,6 +50,7 @@ void leftView(node *root)
     print_left(root,level,m);
    
 }
+
 int main()
 {
 	node *root = new node(20);
